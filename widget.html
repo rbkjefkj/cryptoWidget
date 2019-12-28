@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+    <link href="./widget.css" rel="stylesheet">
+</head>
+<body>
+<h1 id="h1">One EOS costs €<span id="span"></span> right now</h1>
+<!--my key: fd444f02fd13f67cbbbfe6bf9279aa08ca21b36fb99bf2c964790c5b645aa766 -->
+
+<script>
+    fetch('https://min-api.cryptocompare.com/data/price?fsym=EOS&tsyms=EUR&api_key=fd444f02fd13f67cbbbfe6bf9279aa08ca21b36fb99bf2c964790c5b645aa766')
+        .then((resp) => resp.json())
+        .then(function(data) {
+            console.log('data is: ' + JSON.stringify(data));
+            document.getElementById('span').innerHTML = data.EUR;
+        })
+/*Catch errors somehow
+    .catch(function() {
+         document.getElementById('h1').innerHTML = 'Something went wrong while fetching EOS price';
+    });*/
+</script>
+</body>
+</html>
