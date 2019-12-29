@@ -8,16 +8,30 @@
 <!--my key: fd444f02fd13f67cbbbfe6bf9279aa08ca21b36fb99bf2c964790c5b645aa766 -->
 
 <script>
-    fetch('https://min-api.cryptocompare.com/data/price?fsym=EOS&tsyms=EUR&api_key=fd444f02fd13f67cbbbfe6bf9279aa08ca21b36fb99bf2c964790c5b645aa766')
+    /*fetch('https://min-api.cryptocompare.com/data/price?fsym=EOS&tsyms=EUR&api_key=fd444f02fd13f67cbbbfe6bf9279aa08ca21b36fb99bf2c964790c5b645aa766')
         .then((resp) => resp.json())
         .then(function(data) {
             console.log('data is: ' + JSON.stringify(data));
             document.getElementById('span').innerHTML = data.EUR;
+        })*/
+
+    let timeRN = Date.now();
+    fetch('https://min-api.cryptocompare.com/data/v2/histoday?fsym=EOS&tsym=EUR&limit=90&aggregate=1&toTS=' + timeRN)
+        .then((resp) => resp.json())
+        .then(function(data) {
+            for (let i = 0; i < data.Data.Data.length; i++) {
+               console.log(data.Data.Data[i].open + " " + i); 
+            }
         })
+//http://cssglobe.com/pure-css-line-graph/ howto pure CSS graph
+
 /*Catch errors somehow
     .catch(function() {
          document.getElementById('h1').innerHTML = 'Something went wrong while fetching EOS price';
     });*/
+
+//https://min-api.cryptocompare.com/data/v2/histoday?fsym=EOS&tsym=EUR&limit=90&aggregate=1&toTS=TIMEstampRIGHTNOW
+
 </script>
 </body>
 </html>
