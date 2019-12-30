@@ -1,13 +1,95 @@
 <!doctype html>
 <html>
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+	<script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
+    <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+	<style>
+	canvas{
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+	}
+	</style>
     <link href="./widget.css" rel="stylesheet">
 </head>
 <body>
-<h1 id="h1">One EOS costs €<span id="span"></span> right now</h1>
-<!--my key: fd444f02fd13f67cbbbfe6bf9279aa08ca21b36fb99bf2c964790c5b645aa766 -->
+    <h1 id="h1">One EOS costs €<span id="span"></span> right now</h1>
+    <!--my key: fd444f02fd13f67cbbbfe6bf9279aa08ca21b36fb99bf2c964790c5b645aa766 -->
+
+    <div style="width: 75%; display: flex; margin: 0 auto;">
+		<canvas id="myChart"></canvas>
+	</div>
+
 
 <script>
+    let prices = [];
+    let timeRN = Date.now();
+    fetch('https://min-api.cryptocompare.com/data/v2/histoday?fsym=EOS&tsym=EUR&limit=90&aggregate=1&toTS=' + timeRN)
+        .then((resp) => resp.json())
+        .then(function(data) {
+            for (let i = 0; i < data.Data.Data.length; i++) {
+               console.log(data.Data.Data[i].open + " " + i);
+                prices.push(data.Data.Data[i].open); 
+            }
+        })
+        .then(function() {
+            var ctx = document.getElementById('myChart').getContext('2d'); //instantiates Chart class
+            var myChart = new Chart(ctx, {
+             type: 'line',
+             data: {
+        labels: prices, //shld be dates
+        datasets: [{
+            //label: '',
+            data: prices, //these are the values from API
+            backgroundColor: [ 'rgba(248, 148, 6, 0.2)'/*
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'*/
+            ],
+            borderColor: [ 'rgba(248, 148, 6, 1)'
+                /*'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'*/
+            ],
+            borderWidth: 1,
+            lineTension: 0
+        }]
+    },
+    options: {
+        legend: {
+            position: 'right',
+            display: false
+        },
+        scales: {
+            xAxes: [{
+                gridLines: {
+                    drawOnChartArea: false
+                }
+            }],
+            yAxes: [{
+                gridLines: {
+                    drawOnChartArea: false
+                },    
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+        })
+
+
+    
+
+    //FUNCTIONS THAT FETCH DATA FOR GRAPHS
     /*fetch('https://min-api.cryptocompare.com/data/price?fsym=EOS&tsyms=EUR&api_key=fd444f02fd13f67cbbbfe6bf9279aa08ca21b36fb99bf2c964790c5b645aa766')
         .then((resp) => resp.json())
         .then(function(data) {
@@ -15,14 +97,7 @@
             document.getElementById('span').innerHTML = data.EUR;
         })*/
 
-    let timeRN = Date.now();
-    fetch('https://min-api.cryptocompare.com/data/v2/histoday?fsym=EOS&tsym=EUR&limit=90&aggregate=1&toTS=' + timeRN)
-        .then((resp) => resp.json())
-        .then(function(data) {
-            for (let i = 0; i < data.Data.Data.length; i++) {
-               console.log(data.Data.Data[i].open + " " + i); 
-            }
-        })
+    
 //http://cssglobe.com/pure-css-line-graph/ howto pure CSS graph
 
 /*Catch errors somehow
