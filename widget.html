@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
 	<script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
     <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
@@ -14,18 +15,24 @@
     <link href="./widget.css" rel="stylesheet">
 </head>
 <body>
-    <h1 id="h1">One EOS costs €<span id="span"></span> right now</h1>
+<div id="everything">
+    <h1 id="h1">EOS =<span class="spans">€</span><span class="spans" id="span">2.38</span></h1>
     <!--my key: fd444f02fd13f67cbbbfe6bf9279aa08ca21b36fb99bf2c964790c5b645aa766 -->
 
-    <div style="width: 75%; display: flex; margin: 0 auto;">
+    <div style="width: 40%; display: flex; margin: 0 auto;">
 		<canvas id="myChart"></canvas>
 	</div>
 
+        <form>
+            <input type="number">
+            <input id="scnd-input" type="number">
+        </form>
 
 <script>
     let prices = [];
+    let bogusData = [12, 88, 2, 11, 45, 32, 33, 44, 23, 22, 1, 33, 65, 32, 55, 2, 11, 23, 41, 14, 14, 54, 33, 17, 92, 83, 33, 72, 62, 71, 15, 15, 45];
     let timeRN = Date.now();
-    fetch('https://min-api.cryptocompare.com/data/v2/histoday?fsym=EOS&tsym=EUR&limit=90&aggregate=1&toTS=' + timeRN)
+    /*fetch('https://min-api.cryptocompare.com/data/v2/histoday?fsym=EOS&tsym=EUR&limit=90&aggregate=1&toTS=' + timeRN)
         .then((resp) => resp.json())
         .then(function(data) {
             for (let i = 0; i < data.Data.Data.length; i++) {
@@ -33,7 +40,7 @@
                 prices.push(data.Data.Data[i].open); 
             }
         })
-        .then(function() {
+        .then(function() {*/
             var ctx = document.getElementById('myChart').getContext('2d'); //instantiates Chart class
             var myChart = new Chart(ctx, {
              type: 'line',
@@ -41,22 +48,22 @@
         labels: prices, //shld be dates
         datasets: [{
             //label: '',
-            data: prices, //these are the values from API
-            backgroundColor: [ 'rgba(248, 148, 6, 0.2)'/*
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'*/
+            data: bogusData, //prices, //these are the values from API
+            backgroundColor: [ 'rgba(77, 77, 255, 0.5)' //'rgba(0, 0, 77, 0.8)' //'rgba(248, 148, 6, 0.2)'
+                //'rgba(255, 99, 132, 0.2)',
+                //'rgba(54, 162, 235, 0.2)',
+                //'rgba(255, 206, 86, 0.2)',
+                //'rgba(75, 192, 192, 0.2)',
+                //'rgba(153, 102, 255, 0.2)',
+                //'rgba(255, 159, 64, 0.2)'
             ],
-            borderColor: [ 'rgba(248, 148, 6, 1)'
-                /*'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'*/
+            borderColor: [ 'rgba(0, 0, 77, 0.2)' //'rgba(248, 148, 6, 1)'
+                //'rgba(255, 99, 132, 1)',
+                //'rgba(54, 162, 235, 1)',
+                //'rgba(255, 206, 86, 1)',
+                //'rgba(75, 192, 192, 1)',
+                //'rgba(153, 102, 255, 1)',
+                //'rgba(255, 159, 64, 1)'
             ],
             borderWidth: 1,
             lineTension: 0
@@ -78,14 +85,14 @@
                     drawOnChartArea: false
                 },    
                 ticks: {
-                    beginAtZero: true
+                    beginAtZero: false
                 }
             }]
         }
     }
 });
-        })
-
+        //})
+//*/
 
     
 
@@ -94,7 +101,7 @@
         .then((resp) => resp.json())
         .then(function(data) {
             console.log('data is: ' + JSON.stringify(data));
-            document.getElementById('span').innerHTML = data.EUR;
+            document.getElementById('span').innerHTML = data.EUR.toFixed(2);
         })*/
 
     
@@ -108,5 +115,6 @@
 //https://min-api.cryptocompare.com/data/v2/histoday?fsym=EOS&tsym=EUR&limit=90&aggregate=1&toTS=TIMEstampRIGHTNOW
 
 </script>
+</div>
 </body>
 </html>

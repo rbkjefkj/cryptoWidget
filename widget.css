@@ -1,0 +1,50 @@
+#everything {
+    display: flex;
+    flex-direction: column;
+}
+
+#h1 {
+    text-align: center;
+    font-size: 3rem;
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    font-weight: 100;
+}
+
+.spans {
+    color: fuchsia;
+    font-size: 10rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 100;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+h2 span {
+    background-color: pink;
+    opacity: .5;
+    cursor: text !important;
+}
+
+form {
+    margin-top: 7px;
+    padding-left: 13px;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+} 
+
+input {
+    border: none;
+    background-color: aliceblue;
+    width: 96.2%;
+    height: 30px;
+    margin: auto;
+}
+
+#scnd-input { margin-top: 7px; }
