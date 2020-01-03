@@ -1,6 +1,9 @@
-#everything {
+.master-container {
     display: flex;
     flex-direction: column;
+    width: 40%;
+    margin: auto;
+    align-items: left;
 }
 
 #h1 {
@@ -16,6 +19,63 @@
     font-size: 10rem;
     font-family: 'Lato', sans-serif;
     font-weight: 100;
+    /*text-shadow: -1px 0 magenta, 0 1px magenta, 1px 0 red, 0 -1px magenta;*/
+}
+
+/*#menu-container {
+    display: flex;
+    margin: auto;
+    padding-left: 67.5px; /*27px on Brave*//*
+    width: 39.9%;
+}
+
+#menu {
+    height: 40px;
+    width: 93%; /*97.65% on Brave*//*
+    background-color: lightgrey;
+    display: flex;
+}*/
+
+#frst {
+    width: 35px;
+    background-color: white;
+}
+
+.tabs {
+    width: 65px;
+    font-size: 1.1rem;
+    padding-top: 3px;
+    font-weight: 900;
+    font-family: 'Lato', sans-serif;
+    background-color: lightgrey;
+    border-radius: 5px 5px 0 0;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+
+#eos {
+    margin-right: 2px;
+    background-color: steelblue;
+}
+
+#btc {
+    margin-right: auto;
+    background-color: orange;
+}
+
+#eur { margin-left: 2px; }
+
+
+#scnd {
+    width: 8px;
+    background-color: white;
+}
+
+#chart-container {
+    width: 40%;
+    display: flex;
+    margin: 0 auto;
 }
 
 h2 {
@@ -29,22 +89,23 @@ h2 span {
     cursor: text !important;
 }
 
+#different-master-container {
+    display: flex;
+    width: 40%;
+    margin: auto;
+}
+
 form {
     margin-top: 7px;
-    padding-left: 13px;
     display: flex;
     flex-direction: column;
-    width: 40%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
 } 
 
 input {
     border: none;
-    background-color: aliceblue;
-    width: 96.2%;
+    background-color: lightgrey;
     height: 30px;
-    margin: auto;
 }
 
 #scnd-input { margin-top: 7px; }
