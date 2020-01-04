@@ -12,6 +12,7 @@
     margin: 0;
     font-family: 'Lato', sans-serif;
     font-weight: 100;
+    cursor: default;
 }
 
 .spans {
@@ -19,6 +20,7 @@
     font-size: 10rem;
     font-family: 'Lato', sans-serif;
     font-weight: 100;
+    cursor: default;
     /*text-shadow: -1px 0 magenta, 0 1px magenta, 1px 0 red, 0 -1px magenta;*/
 }
 
@@ -43,8 +45,8 @@
 
 .tabs {
     width: 65px;
-    font-size: 1.1rem;
-    padding-top: 3px;
+    font-size: 1rem;
+    padding-top: 5.5px;
     font-weight: 900;
     font-family: 'Lato', sans-serif;
     background-color: lightgrey;
@@ -64,8 +66,13 @@
     background-color: orange;
 }
 
-#eur { margin-left: 2px; }
+#eur {
+    margin-left: 2px;
+    background-color: #000099;
+    color: #FEDD00;
+}
 
+#usd { background-color: #85bb65; }
 
 #scnd {
     width: 8px;
@@ -102,10 +109,50 @@ form {
     width: 100%;
 } 
 
+form span {
+    margin-bottom: 5px;
+    max-height: 33px;
+    border-radius: 3px;
+    font-family: 'Lato', 'sans-serif';
+    background-color: lightgrey;
+    font-weight: 900;
+    color: white;
+}
+
 input {
+    padding-left: 13px;
     border: none;
     background-color: lightgrey;
     height: 30px;
+    font-family: 'Lato', 'sans-serif';
+    font-weight: 900;
+    color: white;
 }
 
-#scnd-input { margin-top: 7px; }
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance:textfield;
+}
+
+/* Removes onclick button outlines on Chrome and FF */
+input {
+   outline:none;
+}
+input ::-moz-focus-inner {
+   border: 0;
+}
+
+#frst-input {
+    /*margin-bottom: 5px;*/
+}
+
+#scnd-input {
+    cursor: default;
+}
