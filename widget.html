@@ -17,16 +17,16 @@
 </head>
 <body>
     <div class="master-container">
-        <h1 id="h1">EOS =<span class="spans">€</span><span class="spans" id="span">2.38</span></h1>
+        <h1 id="h1">EOS =<span id="symbol" class="spans">€</span><span class="spans" id="span">2.38</span></h1>
         <!--my key: fd444f02fd13f67cbbbfe6bf9279aa08ca21b36fb99bf2c964790c5b645aa766 -->
 
         <!--<div id="menu-container">-->
             <div id="menu" style="background-color: white; display: flex; height: 30px; width: 100%;">
                 <div id="frst"></div>
-                <div class="tabs" id="eos">EOS</div>
-                <div class="tabs" id="btc">BTC</div>
-                <div class="tabs" id="usd">$</div>
-                <div class="tabs" id="eur">€</div>
+                <div class="tabs" id="eos" onclick="toEOS()">EOS</div>
+                <div class="tabs" id="btc" onclick="toBTC()">BTC</div>
+                <div class="tabs" id="usd" onclick="toUSD()">$</div>
+                <div class="tabs" id="eur" onclick="toEUR()">€</div>
                 <div id="scnd"></div>
             </div>
         <!--</div>-->        
@@ -44,6 +44,8 @@
         <div style="width: 7px; background-color: white; "></div>
     </div>
 <script>
+
+//FUNCTIONS THAT FETCH DATA FOR GRAPHS
     let prices = [];
     let bogusData = [12, 21, 26, 31, 45, 37, 33, 44, 41, 22, 17, 11, 5, 14, 23, 35, 41, 49, 58, 47, 14, 54, 33, 100, 92, 100, 100, 100, 100, 100, 100, 100, 100];
     let timeRN = Date.now();
@@ -115,29 +117,29 @@
        // })
 //*/
 
-    
 
-    //FUNCTIONS THAT FETCH DATA FOR GRAPHS
-    /*fetch('https://min-api.cryptocompare.com/data/price?fsym=EOS&tsyms=EUR&api_key=fd444f02fd13f67cbbbfe6bf9279aa08ca21b36fb99bf2c964790c5b645aa766')
+function getCurrentPrice(fiat) {
+    fetch('https://min-api.cryptocompare.com/data/price?fsym=EOS&tsyms=' + fiat + '&api_key=fd444f02fd13f67cbbbfe6bf9279aa08ca21b36fb99bf2c964790c5b645aa766')
         .then((resp) => resp.json())
         .then(function(data) {
             console.log('data is: ' + JSON.stringify(data));
-            document.getElementById('span').innerHTML = data.EUR.toFixed(2);
-        })*/
-
-    
-//http://cssglobe.com/pure-css-line-graph/ howto pure CSS graph
+            let price;
+            fiat === 'EUR' ? price = data.EUR.toFixed(2) : price = data.USD.toFixed(2);     
+            document.getElementById('span').innerHTML = price;
+        })
 
 /*Catch errors somehow
     .catch(function() {
          document.getElementById('h1').innerHTML = 'Something went wrong while fetching EOS price';
     });*/
+}
 
-//https://min-api.cryptocompare.com/data/v2/histoday?fsym=EOS&tsym=EUR&limit=90&aggregate=1&toTS=TIMEstampRIGHTNOW
+//DON'T DELETE:    https://min-api.cryptocompare.com/data/v2/histoday?fsym=EOS&tsym=EUR&limit=90&aggregate=1&toTS=TIMEstampRIGHTNOW
 
-//CURRENCY CONVERSION FUNCTIONS 
+//CALCULATOR FUNCTIONS 
     let input = document.getElementById("frst-input");
     let output = document.getElementById("scnd-input");
+    var currentFIAT = 'EUR';
  
     function changeInput() {
         
@@ -147,35 +149,61 @@
         for (let i = 0; i < inputs.length; i++) {
             inputs[i].value = "";
             inputs[i].type = "number"
-            inputs[i].style.paddingLeft = "8px;";
+            inputs[i].style.paddingLeft = "8px";
         }    
 
         for (let i = 0; i < spans.length; i++) {
             spans[i].style.paddingLeft = '13px';
         }  
         
-        let eos = document.createTextNode('EOS');
-        let eur = document.createTextNode('€');
+        let crypto;
+        crypto = document.createTextNode('EOS');
+        let fiat;
+        currentFIAT === 'EUR' ? fiat = document.createTextNode('€') : fiat = document.createTextNode('$');
             
         let innerH = document.getElementById('span1').innerHTML;
         let result = innerH.match(/EOS</);
         if (result === null) {
-            document.getElementById('span1').insertBefore(eos, input);
-            document.getElementById('span2').insertBefore(eur, output);
+            document.getElementById('span1').insertBefore(crypto, input);
+            document.getElementById('span2').insertBefore(fiat, output);
         }
     }
 
     function update(userInput) {
-        let inFIAT = (2.38/*pull this from h1*/ * userInput);
+        let inFIAT = (document.getElementById('span').innerHTML * userInput).toFixed(2);
         output.value = inFIAT;
     }
 
     input.oninput =  function(){
-        let userInput = parseFloat(input.value, 10);
+        let userInput = parseFloat(input.value);
         update(userInput);
     };
 
+//DIFFERENT TAB FUNCTIONS
+function changeFIATsymbols(fiat) {
+    if (fiat === 'EUR') {
+        document.getElementById('symbol').textContent = '€';
+        currentFIAT = 'EUR';
+    } else if (fiat === 'USD') {
+        document.getElementById('symbol').textContent = '$';
+        currentFIAT = 'USD';
+    }    
+    //document.getElementById('scnd-input').type = 'text';   
+    document.getElementById('scnd-input').value = `to ${currentFIAT}`;
+}
 
+function toUSD() {   
+    getCurrentPrice('USD');
+    changeFIATsymbols('USD');
+}
+
+function toEUR() {
+    getCurrentPrice('EUR');
+    changeFIATsymbols('EUR');   
+}
+
+//CALLED ONLOAD
+getCurrentPrice('EUR');
 
 </script>
 </div>
