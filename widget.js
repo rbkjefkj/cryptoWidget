@@ -71,110 +71,143 @@
 //*/
 
 
-function getCurrentPrice(fiat) {
-    fetch('https://min-api.cryptocompare.com/data/price?fsym=EOS&tsyms=' + fiat + '&api_key=fd444f02fd13f67cbbbfe6bf9279aa08ca21b36fb99bf2c964790c5b645aa766')
-        .then((resp) => resp.json())
-        .then(function(data) {
-            console.log('data is: ' + JSON.stringify(data));
-            let price;
-            fiat === 'EUR' ? price = data.EUR.toFixed(2) : price = data.USD.toFixed(2);     
-            document.getElementById('span').innerHTML = price;
-            /*if span1 (or 2 or both doesnt matter) contains a text node(or check w a regex), then frst-input and scnd-input types need to be changed to text and span inner textnode needs
-            to be deleted and THEN run the two following lines. And u might wanna put this funcitonality in a function for sensibility. OK this is ***********/
-                    
-            let innerH = document.getElementById('span1').innerHTML;
-            let result = innerH.match(/EOS</); //or BTC
-            if (result === null) {
-                let crypto;
-                crypto = document.createTextNode('EOS');
-                let fiat;
-                currentFIAT === 'EUR' ? fiat = document.createTextNode('€') : fiat = document.createTextNode('$');  
-                document.getElementById('span1').insertBefore(crypto, input);
-                document.getElementById('span2').insertBefore(fiat, output);
-            }/* else  { does not work
-                document.getElementById('span1').innerHTML = '<input class="inputs" id="frst-input" type="text" spellcheck="false" onclick="changeInput()">';
-                document.getElementById('span2').innerHTML = '<input class="inputs" id="scnd-input" type="text" spellcheck="false" onclick="changeInput()">';
-            }*/
-
-            document.getElementById('frst-input').value = `from EOS`; //dsnt work cos by now input type is number and span doesnt remove its inner textnode
-            document.getElementById('scnd-input').value = `to ${fiat}`;
-            
-        })
-
-/*Catch errors somehow
-    .catch(function() {
-         document.getElementById('h1').innerHTML = 'Something went wrong while fetching EOS price';
-    });*/
-}
 
 //DON'T DELETE:    https://min-api.cryptocompare.com/data/v2/histoday?fsym=EOS&tsym=EUR&limit=90&aggregate=1&toTS=TIMEstampRIGHTNOW
 
-//CALCULATOR FUNCTIONS 
-    let input = document.getElementById("frst-input");
-    let output = document.getElementById("scnd-input");
-    var currentFIAT = 'EUR';
- 
-    function changeInput() {
-        
-        let spans = document.getElementsByClassName('form-spans');
-        let inputs = document.getElementsByClassName('inputs');
+
+
+
+
+
+
+let fiat = 'EUR';
+let crypto = 'EOS';
+let isCalculator = false;
+//CALLED ONLOAD
+getCurrentPrice2('EUR');
+
+
+function getCurrentPrice2(fiat) {
+    fetch('https://min-api.cryptocompare.com/data/price?fsym=' + crypto + '&tsyms=' + fiat + '&api_key=fd444f02fd13f67cbbbfe6bf9279aa08ca21b36fb99bf2c964790c5b645aa766')
+        .then((resp) => resp.json())
+        .then(function(data) {
+            let price;
+            console.log('data is: ' + JSON.stringify(data));
+            fiat === 'EUR' ? price = data.EUR.toFixed(2) : price = data.USD.toFixed(2); //chooses price depending on which FIAT is used     
+            document.getElementById('span').innerHTML = price;                          //paints price
+            fiat === 'EUR' ? document.getElementById('symbol').textContent = '€' : document.getElementById('symbol').textContent = '$' //sets €/$ in title
+            document.getElementById('cryptoName').textContent = crypto;                           //sets crypto's name in title
+            
+            if (isCalculator === true) stopCalculator();
+            document.getElementById('frst-input').value = 'from ' + crypto;             //next 2 lines give text 'from CRYPTO to FIAT'
+            document.getElementById('scnd-input').value = 'to ' + fiat;
+            
+        });
+}
+
+
+function stopCalculator() {
+     isCalculator = false;
+    //Removing CSS
+    let spans = document.getElementsByClassName('form-spans');
+    let inputs = document.getElementsByClassName('inputs');
     
-        for (let i = 0; i < inputs.length; i++) {
-            inputs[i].value = "";
-            inputs[i].type = "number"
-            inputs[i].style.paddingLeft = "8px";
-        }    
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].value = "";
+        inputs[i].type = "text"
+        inputs[i].style.paddingLeft = "13px";
+    }    
 
-        for (let i = 0; i < spans.length; i++) {
-            spans[i].style.paddingLeft = '13px';
-        }  
-         
-        //make this a function proly   
-        let innerH = document.getElementById('span1').innerHTML;
-        let result = innerH.match(/EOS</); //or BTC
-        if (result === null) {
-            let crypto;
-            crypto = document.createTextNode('EOS');
-            let fiat;
-            currentFIAT === 'EUR' ? fiat = document.createTextNode('€') : fiat = document.createTextNode('$');  
-            document.getElementById('span1').insertBefore(crypto, input);
-            document.getElementById('span2').insertBefore(fiat, output);
-        }//here it ends
+    for (let i = 0; i < spans.length; i++) {
+        spans[i].style.paddingLeft = "0";
+    }        
+    document.getElementById('span1').removeChild(document.getElementById('span1').childNodes[0]);
+    document.getElementById('span2').removeChild(document.getElementById('span2').childNodes[0]);
+    document.getElementById('frst-input').value = 'from ' + crypto;             //next 2 lines give text 'from CRYPTO to FIAT'
+    document.getElementById('scnd-input').value = 'to ' + fiat;
+}
+
+
+
+function toCalculator() {
+    isCalculator = true;
+    //Making it pretty
+    let spans = document.getElementsByClassName('form-spans');
+    let inputs = document.getElementsByClassName('inputs');
+    
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].value = "";
+        inputs[i].type = "number"
+        inputs[i].style.paddingLeft = "8px";
+    }    
+
+    for (let i = 0; i < spans.length; i++) {
+        spans[i].style.paddingLeft = '13px';
+    } 
+    //Actually changing text 
+    console.log(crypto);    //crypto is undefined if you pass it as arg to function toCalculator();
+    let cryptoNode = document.createTextNode(crypto);   
+    let fiatNode;   //defining here cos can't inside a tertiary statement      
+    fiat === 'EUR' ? fiatNode = document.createTextNode('€') : fiatNode = document.createTextNode('$');  
+    document.getElementById('frst-input').value = '';   //deleting 'from CRYPTO to FIAT'
+    document.getElementById('scnd-input').value = '';    
+    let span1 =  document.getElementById('span1');      //just for
+    let span2 =  document.getElementById('span2');      //convenience    
+    //Checks if there isn't already a text node so that multiple text nodes wouldn't get added w every click    
+    if (span1.childNodes[0].nodeType !== 3) {
+        span1.insertBefore(cryptoNode, span1.childNodes[0]);
+        span2.insertBefore(fiatNode, span2.childNodes[0]);
+    }
+}
+
+
+function update(userInput) {
+        let inFIAT = (document.getElementById('span').innerHTML * userInput).toFixed(2); // inFIAT = current price * user input
+        document.getElementById("scnd-input").value = inFIAT;  //assigns that to output
     }
 
-    function update(userInput) {
-        let inFIAT = (document.getElementById('span').innerHTML * userInput).toFixed(2);
-        output.value = inFIAT;
-    }
-
-    input.oninput =  function(){
-        let userInput = parseFloat(input.value);
+    document.getElementById("frst-input").oninput =  function(){
+        let userInput = parseFloat(document.getElementById("frst-input").value);
         update(userInput);
     };
 
-//DIFFERENT TAB FUNCTIONS
-function changeFIATsymbols(fiat) {
-    if (fiat === 'EUR') {
-        document.getElementById('symbol').textContent = '€';
-        currentFIAT = 'EUR';
-    } else if (fiat === 'USD') {
-        document.getElementById('symbol').textContent = '$';
-        currentFIAT = 'USD';
-    }    
-    //document.getElementById('scnd-input').type = 'text';   
-    document.getElementById('scnd-input').value = `to ${currentFIAT}`;
-}
 
-function toUSD() {   
-    getCurrentPrice('USD');
-    changeFIATsymbols('USD');
+function toUSD() {
+    fiat = 'USD';   
+    getCurrentPrice2('USD');
+    //changeFIATsymbols('USD');
 }
 
 function toEUR() {
-    getCurrentPrice('EUR');
-    changeFIATsymbols('EUR');   
+    fiat = 'EUR'
+    getCurrentPrice2('EUR');
+    //changeFIATsymbols('EUR');   
 }
 
-//CALLED ONLOAD
-getCurrentPrice('EUR');
+function toEOS() {
+    crypto = 'EOS'
+    getCurrentPrice2(fiat);
+    //changeFIATsymbols('EUR');   
+}
+
+function toBTC() {
+    crypto = 'BTC'
+    getCurrentPrice2(fiat);
+    //changeFIATsymbols('EUR');   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
