@@ -84,7 +84,7 @@ let fiat = 'EUR';
 let crypto = 'EOS';
 let isCalculator = false;
 //CALLED ONLOAD
-getCurrentPrice2('EUR');
+//getCurrentPrice2('EUR');
 
 
 function getCurrentPrice2(fiat) {

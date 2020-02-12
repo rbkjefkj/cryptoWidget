@@ -1,9 +1,11 @@
+
 .master-container {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    min-width: 40%;
     margin: auto;
-    align-items: left;
+    align-items: center;
+    max-width: 1477px;
 }
 
 #h1 {
@@ -38,6 +40,12 @@
     background-color: lightgrey;
     display: flex;
 }*/
+
+#menu {
+    width: 585px;
+    display: flex;
+    height: 30px;
+}
 
 #frst {
     width: 35px;
@@ -81,7 +89,8 @@
 }
 
 #chart-container {
-    width: 40%;
+    max-width: 1477px;
+    width: 585px;
     display: flex;
     margin: 0 auto;
 }
@@ -98,8 +107,9 @@ h2 span {
 }
 
 #different-master-container {
+    max-width: 1477px;
     display: flex;
-    width: 40%;
+    width: 585px;
     margin: auto;
 }
 
@@ -157,3 +167,24 @@ input ::-moz-focus-inner {
 #scnd-input {
     cursor: default;
 }
+
+@media(max-width: 600px) {
+    body .master-container, body #chart-container, body #different-master-container, body #menu {
+        width: 95%;
+    }
+    #menu #frst { width: 23px; }
+    #menu #scnd { width: 0;  }
+    #menu .tabs { width: 60px; font-size: .9rem; }
+    #eur { margin-right: -4.5px; }
+}
+
+@media(max-width: 520px) {
+    #menu #eur { margin-right: -2.5px; }   
+}
+
+/*@media(max-width: 500px) {
+    #h1 { font-size: 3.5rem; }
+    #h1 .spans { font-size: 17rem; }
+    #chart-container .chartjs-size-monitor canvas { width: 95%; height: auto; margin: 0 auto; }
+}*/
+
