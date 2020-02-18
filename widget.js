@@ -16,7 +16,7 @@
             //gradient.addColorStop(0, 'rgba(0, 0, 77, 1)');
             //gradient.addColorStop(1, 'rgba(0, 0, 77, 0)');    
             
-            var myChart = new Chart(ctx, {
+            let config = {
             type: 'line',
             data: {
             labels: bogusData, //prices, //shld be dates
@@ -53,24 +53,28 @@
         scales: {
             xAxes: [{
                 gridLines: {
-                    drawOnChartArea: false
+                    drawOnChartArea: isTrue()
                 }
             }],
             yAxes: [{
                 gridLines: {
                     drawOnChartArea: false
-                },    
+                },   
+                display: false,
+                scaleLabel: { display: false }, 
                 ticks: {
                     beginAtZero: false
                 }
             }]
         }
     }
-});
-       // })
-//*/
+}
 
 
+var myChart = new Chart(ctx, config);
+
+
+function isTrue() { return 0; }
 
 //DON'T DELETE:    https://min-api.cryptocompare.com/data/v2/histoday?fsym=EOS&tsym=EUR&limit=90&aggregate=1&toTS=TIMEstampRIGHTNOW
 

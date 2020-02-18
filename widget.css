@@ -6,12 +6,13 @@
     margin: auto;
     align-items: center;
     max-width: 1477px;
+    width: 585px;
 }
 
 #h1 {
     text-align: center;
-    font-size: 3rem;
-    margin: 0;
+    font-size: 2rem;
+    margin: 0 0 0 auto;
     font-family: 'Lato', sans-serif;
     font-weight: 100;
     cursor: default;
@@ -20,7 +21,7 @@
 
 .spans {
     color: fuchsia;
-    font-size: 10rem;
+    font-size: 9.5rem;
     font-family: 'Lato', sans-serif;
     font-weight: 100;
     cursor: default;
@@ -176,10 +177,17 @@ input ::-moz-focus-inner {
     #menu #scnd { width: 0;  }
     #menu .tabs { width: 60px; font-size: .9rem; }
     #eur { margin-right: -4.5px; }
+        
+    #cryptoName { font-size: 5vw; }
+    h1 .spans { font-size: 27vw; }
+
 }
 
 @media(max-width: 520px) {
-    #menu #eur { margin-right: -2.5px; }   
+    /*#menu #eur { margin-right: -2.5px; }*/
+    body .master-container, body #chart-container, body #different-master-container, body #menu {
+        width: 100%;
+    }       
 }
 
 /*@media(max-width: 500px) {
