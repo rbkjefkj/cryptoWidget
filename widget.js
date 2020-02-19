@@ -53,14 +53,14 @@
         scales: {
             xAxes: [{
                 gridLines: {
-                    drawOnChartArea: isTrue()
+                    drawOnChartArea: false
                 }
             }],
             yAxes: [{
                 gridLines: {
                     drawOnChartArea: false
                 },   
-                display: false,
+                display: isTrue(),
                 scaleLabel: { display: false }, 
                 ticks: {
                     beginAtZero: false
@@ -73,8 +73,21 @@
 
 var myChart = new Chart(ctx, config);
 
+let above520 = true;
 
-function isTrue() { return 0; }
+function isTrue() { 
+    let screenWidth = getWidth();
+    if (screenWidth > 520) return true; 
+    else return false; 
+}
+
+function getWidth() { 
+    return window.innerWidth;
+    
+}
+//window.onload = showWidth;
+window.onresize = getWidth;
+
 
 //DON'T DELETE:    https://min-api.cryptocompare.com/data/v2/histoday?fsym=EOS&tsym=EUR&limit=90&aggregate=1&toTS=TIMEstampRIGHTNOW
 
