@@ -34,7 +34,6 @@
     padding-left: 67.5px; /*27px on Brave*//*
     width: 39.9%;
 }
-
 #menu {
     height: 40px;
     width: 93%; /*97.65% on Brave*//*
@@ -46,10 +45,11 @@
     width: 585px;
     display: flex;
     height: 30px;
+    margin-bottom: 6px;
 }
 
 #frst {
-    width: 35px;
+    width: 21px; 
     background-color: white;
 }
 
@@ -114,6 +114,11 @@ h2 span {
     margin: auto;
 }
 
+#different-master-container div {
+    width: 23px;
+    background-color: white;
+}
+
 form {
     margin-top: 7px;
     display: flex;
@@ -134,6 +139,7 @@ form span {
 input {
     padding-left: 13px;
     border: none;
+    border-radius: 3px;
     background-color: lightgrey;
     height: 30px;
     font-family: 'Lato', 'sans-serif';
@@ -170,13 +176,11 @@ input ::-moz-focus-inner {
 }
 
 @media(max-width: 600px) {
-    body .master-container, body #chart-container, body #different-master-container, body #menu {
-        width: 95%;
-    }
-    #menu #frst { width: 23px; }
+    body .master-container, body #chart-container, body #different-master-container, body #menu { width: 95%; }
+    #menu #frst { width: 8px; }
     #menu #scnd { width: 0;  }
     #menu .tabs { width: 60px; font-size: .9rem; }
-    #eur { margin-right: -4.5px; }
+    #eur { margin-right: -5.4px; }
         
     #cryptoName { font-size: 5vw; }
     h1 .spans { font-size: 27vw; }
@@ -185,9 +189,10 @@ input ::-moz-focus-inner {
 
 @media(max-width: 520px) {
     /*#menu #eur { margin-right: -2.5px; }*/
-    body .master-container, body #chart-container, body #different-master-container, body #menu {
-        width: 100%;
-    }       
+    body .master-container, body #chart-container, body #different-master-container, body #menu { width: 100%; }   
+    #eur { margin-right: 0; }    
+    #menu #frst { width: 21px; }
+    #menu #scnd { width: 8px;  }        
 }
 
 /*@media(max-width: 500px) {
@@ -195,4 +200,3 @@ input ::-moz-focus-inner {
     #h1 .spans { font-size: 17rem; }
     #chart-container .chartjs-size-monitor canvas { width: 95%; height: auto; margin: 0 auto; }
 }*/
-

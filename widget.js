@@ -1,6 +1,8 @@
+let myChart;
+
 //FUNCTIONS THAT FETCH DATA FOR GRAPHS
     let prices = [];
-    let bogusData = [12, 21, 26, 31, 45, 37, 33, 44, 41, 22, 17, 11, 5, 14, 23, 35, 41, 49, 58, 47, 14, 54, 33, 100, 92, 100, 100, 100, 100, 100, 100, 100, 100];
+    let bogusData = [100, 100, 100, 91, 72, 53, 44, 41, 22, 17, 11, 5, 14, 23, 35, 41, 49, 58, 47, 14, 54, 33, 100, 92, 100, 100, 100];
     let timeRN = Date.now();
     /*fetch('https://min-api.cryptocompare.com/data/v2/histoday?fsym=EOS&tsym=EUR&limit=90&aggregate=1&toTS=' + timeRN)
         .then((resp) => resp.json())
@@ -15,17 +17,17 @@
             //var gradient = ctx.createLinearGradient(0, 0, 0, 260);
             //gradient.addColorStop(0, 'rgba(0, 0, 77, 1)');
             //gradient.addColorStop(1, 'rgba(0, 0, 77, 0)');    
-            
-            let config = {
-            type: 'line',
-            data: {
-            labels: bogusData, //prices, //shld be dates
-            datasets: [{
-                //label: '',
-                data: bogusData, //prices, //these are the values from API
-                backgroundColor: 'rgba(0, 0, 0, 0.1)',//gradient, /*[ 'rgba(77, 77, 255, 0.5)' //' 0.8)' //'rgba(248, 148, 6, 0.2)'
-                //'rgba(255, 99, 132, 0.2)',
-                //'rgba(54, 162, 235, 0.2)',
+
+            let config2 = {
+                type: 'line',
+                data: {
+                labels: bogusData, //prices, //shld be dates
+                datasets: [{
+                    //label: '',
+                    data: bogusData, //prices, //these are the values from API
+                    backgroundColor: 'rgba(77, 77, 255, 0.5)',//gradient, /*[ 'rgba(77, 77, 255, 0.5)' //' 0.8)' //'rgba(248, 148, 6, 0.2)'
+                    //'rgba(255, 99, 132, 0.2)',
+                    //'rgba(54, 162, 235, 0.2)',
                 //'rgba(255, 206, 86, 0.2)',
                 //'rgba(75, 192, 192, 0.2)',
                 //'rgba(153, 102, 255, 0.2)',
@@ -54,13 +56,14 @@
             xAxes: [{
                 gridLines: {
                     drawOnChartArea: false
-                }
+                },
+                ticks: { maxRotation: 0, autoSkip: true, autoSkipPadding: 30, labelOffset: 7 }
             }],
             yAxes: [{
                 gridLines: {
                     drawOnChartArea: false
                 },   
-                display: isTrue(),
+                display: false,
                 scaleLabel: { display: false }, 
                 ticks: {
                     beginAtZero: false
@@ -71,28 +74,40 @@
 }
 
 
-var myChart = new Chart(ctx, config);
+myChart = new Chart(ctx, config2);
 
-let above520 = true;
+//setTimeout(function(){ var myChart = new Chart(ctx, config); }, 100);
 
-function isTrue() { 
+
+/*function isTrue() { 
     let screenWidth = getWidth();
-    if (screenWidth > 520) return true; 
-    else return false; 
+    if (screenWidth > 520) { above520 = true; return true; } 
+    else { above520 = false; return false; } 
 }
 
 function getWidth() { 
     return window.innerWidth;
     
+}*/
+
+/*function somefunc() {
+    let w = getWidth();
+    if (above520) { //screen is currently big
+        console.log('somefunc ran. Width is above 520')
+        if (w <= 520) {
+            above520 = false;
+            myChart = new Chart(ctx, config2);
+        }
+    } else { //screen is currently small
+        if (w > 520) {
+            console.log('somefunc ran. Width is below 520.');
+            above520 = true;
+            myChart = new Chart(ctx, config);
+        }
+    }
 }
-//window.onload = showWidth;
-window.onresize = getWidth;
 
-
-//DON'T DELETE:    https://min-api.cryptocompare.com/data/v2/histoday?fsym=EOS&tsym=EUR&limit=90&aggregate=1&toTS=TIMEstampRIGHTNOW
-
-
-
+window.onresize = somefunc;*/
 
 
 
@@ -216,15 +231,4 @@ function toBTC() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+//DON'T DELETE:    https://min-api.cryptocompare.com/data/v2/histoday?fsym=EOS&tsym=EUR&limit=90&aggregate=1&toTS=TIMEstampRIGHTNOW
