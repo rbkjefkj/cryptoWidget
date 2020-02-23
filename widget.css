@@ -1,10 +1,9 @@
 .master-container {
     display: flex;
     flex-direction: column;
-    min-width: 40%;
     margin: auto;
     align-items: center;
-    max-width: 1477px;
+    max-width: 585px;
     width: 585px;
 }
 
