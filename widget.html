@@ -1,4 +1,3 @@
-  
 <!doctype html>
 <html>
 <head>
@@ -19,17 +18,17 @@
 </head>
 <body>
     <div class="master-container">
-        <h1 id="h1"><span id="cryptoName">EOS =</span><span id="symbol" class="spans">€</span><span class="spans" id="span">2.38</span></h1>
+        <h1 id="h1"><span id="cryptoName">EOS</span> =<span id="symbol" class="spans">€</span><span class="spans" id="span">2.38</span></h1>
         <!--my key: fd444f02fd13f67cbbbfe6bf9279aa08ca21b36fb99bf2c964790c5b645aa766 -->
 
         <!--<div id="menu-container">-->
             <div id="menu">
-                <div id="frst"></div>
+                <!--<div id="frst"></div>-->
                 <div class="tabs" id="eos" onclick="toEOS()">EOS</div>
                 <div class="tabs" id="btc" onclick="toBTC()">BTC</div>
                 <div class="tabs" id="usd" onclick="toUSD()">$</div>
                 <div class="tabs" id="eur" onclick="toEUR()">€</div>
-                <div id="scnd"></div>
+                <!--<div id="scnd"></div>-->
             </div>
         <!--</div>-->        
     </div>
@@ -38,12 +37,12 @@
     </div>
 
     <div id="different-master-container">
-        <div></div>
+        <div id="frst"></div>
         <form>
             <span class="form-spans" id="span1"><input class="inputs" id="frst-input" type="text" spellcheck="false" onclick="toCalculator()"></span> <!--changeInput() previously-->
             <span class="form-spans" id="span2"><input class="inputs" id="scnd-input" readonly type="text" spellcheck="false"></span>
         </form>
-        <div style="width: 7px; background-color: white; "></div>
+        <div id="scnd"></div>
     </div>
 </div>
 <script type="text/javascript" src="./widget.js"></script>

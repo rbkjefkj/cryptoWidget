@@ -1,4 +1,3 @@
-
 .master-container {
     display: flex;
     flex-direction: column;
@@ -48,10 +47,10 @@
     margin-bottom: 6px;
 }
 
-#frst {
+/*#frst {
     width: 21px; 
     background-color: white;
-}
+}*/
 
 .tabs {
     width: 65px;
@@ -67,7 +66,8 @@
 }
 
 #eos {
-    margin-right: 2px;
+    margin-left: 13px;
+    margin-right: 2.5px;
     background-color: steelblue;
 }
 
@@ -77,6 +77,7 @@
 }
 
 #eur {
+    margin-right: 12px;
     margin-left: 2px;
     background-color: #000099;
     color: #FEDD00;
@@ -84,10 +85,10 @@
 
 #usd { background-color: #85bb65; }
 
-#scnd {
+/*#scnd {
     width: 8px;
     background-color: white;
-}
+}*/
 
 #chart-container {
     max-width: 1477px;
@@ -114,10 +115,9 @@ h2 span {
     margin: auto;
 }
 
-#different-master-container div {
-    width: 23px;
-    background-color: white;
-}
+#frst { width: 14px; background-color: white; }
+#scnd { width: 13.5px; background-color: white; }
+
 
 form {
     margin-top: 7px;
@@ -175,12 +175,15 @@ input ::-moz-focus-inner {
     cursor: default;
 }
 
+
+
+
+
 @media(max-width: 600px) {
     body .master-container, body #chart-container, body #different-master-container, body #menu { width: 95%; }
-    #menu #frst { width: 8px; }
-    #menu #scnd { width: 0;  }
     #menu .tabs { width: 60px; font-size: .9rem; }
-    #eur { margin-right: -5.4px; }
+    #eos { margin-left: 0; margin-right: 1.5px; }
+    #eur { margin-right: -1px; }
         
     #cryptoName { font-size: 5vw; }
     h1 .spans { font-size: 27vw; }
@@ -190,13 +193,23 @@ input ::-moz-focus-inner {
 @media(max-width: 520px) {
     /*#menu #eur { margin-right: -2.5px; }*/
     body .master-container, body #chart-container, body #different-master-container, body #menu { width: 100%; }   
-    #eur { margin-right: 0; }    
-    #menu #frst { width: 21px; }
-    #menu #scnd { width: 8px;  }        
+    #eos { margin-left: 13px; }
+    #eur { margin-right: 13px; }  
+    #h1 { margin-right: 4px; }          
 }
 
-/*@media(max-width: 500px) {
-    #h1 { font-size: 3.5rem; }
-    #h1 .spans { font-size: 17rem; }
-    #chart-container .chartjs-size-monitor canvas { width: 95%; height: auto; margin: 0 auto; }
-}*/
+@media(min-width: 220px) and (max-width: 430px) {
+    #h1 { margin-right: 6px; }
+    #eur { margin-right: 12px; } /*mybe we can do wo this tiny change? :S*/
+    #menu { margin-top: 6px; }
+    #menu .tabs { padding-top: 6px; width: 45px; font-size: .7rem; }
+    #menu { height: 24px; }
+    span input { height: 25px; }
+} 
+
+
+
+
+
+
+

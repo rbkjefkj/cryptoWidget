@@ -57,7 +57,7 @@ let myChart;
                 gridLines: {
                     drawOnChartArea: false
                 },
-                ticks: { maxRotation: 0, autoSkip: true, autoSkipPadding: 30, labelOffset: 7 }
+                ticks: { maxRotation: 0, autoSkip: true, autoSkipPadding: 30, labelOffset: 7, fontColor: '#b3b3b3' }
             }],
             yAxes: [{
                 gridLines: {
@@ -84,7 +84,6 @@ myChart = new Chart(ctx, config2);
     if (screenWidth > 520) { above520 = true; return true; } 
     else { above520 = false; return false; } 
 }
-
 function getWidth() { 
     return window.innerWidth;
     
@@ -106,7 +105,6 @@ function getWidth() {
         }
     }
 }
-
 window.onresize = somefunc;*/
 
 
