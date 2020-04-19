@@ -113,8 +113,9 @@ window.onresize = somefunc;*/
 let fiat = 'EUR';
 let crypto = 'EOS';
 let isCalculator = false;
+
 //CALLED ONLOAD
-//getCurrentPrice2('EUR');
+getCurrentPrice2('EUR');
 
 
 function getCurrentPrice2(fiat) {
@@ -177,7 +178,7 @@ function toCalculator() {
     //Actually changing text 
     console.log(crypto);    //crypto is undefined if you pass it as arg to function toCalculator();
     let cryptoNode = document.createTextNode(crypto);   
-    let fiatNode;   //defining here cos can't inside a tertiary statement      
+    let fiatNode;   //defining here cos can't inside a ternary statement      
     fiat === 'EUR' ? fiatNode = document.createTextNode('€') : fiatNode = document.createTextNode('$');  
     document.getElementById('frst-input').value = '';   //deleting 'from CRYPTO to FIAT'
     document.getElementById('scnd-input').value = '';    
@@ -191,12 +192,19 @@ function toCalculator() {
 }
 
 
-function update(userInput) {
-        let inFIAT = (document.getElementById('span').innerHTML * userInput).toFixed(2); // inFIAT = current price * user input
+function update(userInput) { 
+        let inFIAT = (((document.getElementById('span').innerHTML * 100) * (userInput * 100))/10000).toFixed(2); // inFIAT = current price * user input
         document.getElementById("scnd-input").value = inFIAT;  //assigns that to output
     }
 
-    document.getElementById("frst-input").oninput =  function(){
+    let firstInput = document.getElementById("frst-input");
+    firstInput.oninput =  function() {
+        let rex = /\./;
+        let str = firstInput.value.toString();    
+        if (str.match(rex) === null) {      //if user types an integer
+            if (firstInput.value.length > 14) firstInput.value = firstInput.value.slice(0, 14);
+        } else firstInput.value = firstInput.value.slice(0, 18);
+
         let userInput = parseFloat(document.getElementById("frst-input").value);
         update(userInput);
     };

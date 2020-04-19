@@ -26,6 +26,14 @@
     /*text-shadow: -1px 0 magenta, 0 1px magenta, 1px 0 red, 0 -1px magenta;*/
 }
 
+.six-digits {
+    margin: 30px 5px 0 auto;
+}
+
+.seven-digits {
+
+}
+
 /*#menu-container {
     display: flex;
     margin: auto;
@@ -70,10 +78,14 @@
     background-color: steelblue;
 }
 
+#eos:hover { background-color: #1f86db; }
+
 #btc {
     margin-right: auto;
     background-color: orange;
 }
+
+#btc:hover { background-color: #ffcc00; }
 
 #eur {
     margin-right: 12px;
@@ -82,7 +94,11 @@
     color: #FEDD00;
 }
 
+#eur:hover { background-color: #0000cc; color: yellow; }
+
 #usd { background-color: #85bb65; }
+#usd:hover { background-color: #7dd24b; }
+
 
 /*#scnd {
     width: 8px;
@@ -136,6 +152,8 @@ form span {
 }
 
 input {
+    font-size: 16px;
+    width: 92%;
     padding-left: 13px;
     border: none;
     border-radius: 3px;
@@ -176,7 +194,7 @@ input ::-moz-focus-inner {
 
 
 
-
+@media(max-width: 563px) { #frst-input { width: 80%; }}
 
 @media(max-width: 600px) {
     body .master-container, body #chart-container, body #different-master-container, body #menu { width: 95%; }
@@ -203,7 +221,8 @@ input ::-moz-focus-inner {
     #menu { margin-top: 6px; }
     #menu .tabs { padding-top: 6px; width: 45px; font-size: .7rem; }
     #menu { height: 24px; }
-    span input { height: 25px; }
+    span input { height: 25px; font-size: 15px; }
+    span { font-size: 15px; }
 } 
 
 
