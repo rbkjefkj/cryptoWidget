@@ -7,7 +7,7 @@
     width: 585px;
 }
 
-#h1 {
+h1 {
     text-align: center;
     font-size: 2rem;
     margin: 0 0 0 auto;
@@ -85,7 +85,7 @@
     background-color: orange;
 }
 
-#btc:hover { background-color: #ffcc00; }
+#btc:hover { background-color: #ffb916; }
 
 #eur {
     margin-right: 12px;
@@ -192,6 +192,24 @@ input ::-moz-focus-inner {
     cursor: default;
 }
 
+/*CSS Rules for long crypto price tags*/
+/*six digits*/
+.six-digit-h1 {
+    margin: 30px 5px 0 auto;
+}
+
+h1 .six-digit-spans {
+    font-size: 6.6rem;
+}
+
+/*seven digits*/
+.seven-digit-h1 {
+    margin: 50px 4px 0 auto;
+}
+
+h1 .seven-digit-spans {
+    font-size: 6rem;
+}
 
 
 @media(max-width: 563px) { #frst-input { width: 80%; }}
@@ -203,27 +221,49 @@ input ::-moz-focus-inner {
     #eur { margin-right: -1px; }
         
     #cryptoName { font-size: 5vw; }
-    h1 .spans { font-size: 27vw; }
-
+    .spans { font-size: 27vw; }
+    #h1 .six-digit-spans { font-size: 16.7vw; } /*for when crypto price is 6 digits long*/
+    #h1 .seven-digit-spans { font-size: 14.6vw; } /*7 digits long*/
 }
 
 @media(max-width: 520px) {
-    /*#menu #eur { margin-right: -2.5px; }*/
     body .master-container, body #chart-container, body #different-master-container, body #menu { width: 100%; }   
     #eos { margin-left: 13px; }
     #eur { margin-right: 13px; }  
-    #h1 { margin-right: 4px; }          
+    h1 { margin-right: 4px; }     
+    .six-digit-h1 { margin-right: 8px; } /*for when crypto price is 6 digits long*/     
+    .seven-digit-h1 { margin: 30px 8px 0 auto; } /*7 digits long*/
 }
 
 @media(min-width: 220px) and (max-width: 430px) {
-    #h1 { margin-right: 6px; }
-    #eur { margin-right: 12px; } /*mybe we can do wo this tiny change? :S*/
+    h1 { margin-right: 6px; }
+    .six-digit-h1 { margin-right: 8px; } /*for when crypto price is 6 digits long*/
+    .seven-digit-h1 { margin-right: 8px; } /*7 digits long*/
+    #eur { margin-right: 12px; } 
     #menu { margin-top: 6px; }
     #menu .tabs { padding-top: 6px; width: 45px; font-size: .7rem; }
     #menu { height: 24px; }
     span input { height: 25px; font-size: 15px; }
     span { font-size: 15px; }
 } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -76,6 +76,57 @@ let myChart;
 
 myChart = new Chart(ctx, config2);
 
+//CHART THAT APPEARS WHEN API REQUEST FAILS
+    let failedChart;
+    let failedData = [];
+        var ctx = document.getElementById('myChart').getContext('2d');
+            let config = {
+                type: 'line',
+                data: {
+                labels: failedData,
+                datasets: [{
+                    data: failedData,
+                    backgroundColor:  'rgba(0, 0, 0, 0.1)',
+                borderColor: [ 'rgba(0, 0, 77, 0.2)'
+                ],
+                borderWidth: 1,
+                pointStyle: 'rectRot',
+                pointRadius: 0,
+                lineTension: 0
+            }]
+        },
+    options: {
+        legend: {
+            position: 'right',
+            display: false
+        },
+        scales: {
+            xAxes: [{
+                gridLines: {
+                    drawOnChartArea: false
+                },
+                ticks: { display: true, maxRotation: 0, autoSkip: true, autoSkipPadding: 30, labelOffset: 7, fontColor: 'white' }
+            }],
+            yAxes: [{
+                gridLines: {
+                    drawOnChartArea: false
+                },   
+                display: false,
+                scaleLabel: { display: false }, 
+                ticks: {
+                    beginAtZero: false
+                }
+            }]
+        }
+    }
+}
+
+
+myChart = new Chart(ctx, config);
+
+
+
+
 //setTimeout(function(){ var myChart = new Chart(ctx, config); }, 100);
 
 
@@ -119,21 +170,54 @@ getCurrentPrice2('EUR');
 
 
 function getCurrentPrice2(fiat) {
-    fetch('https://min-api.cryptocompare.com/data/price?fsym=' + crypto + '&tsyms=' + fiat + '&api_key=fd444f02fd13f67cbbbfe6bf9279aa08ca21b36fb99bf2c964790c5b645aa766')
-        .then((resp) => resp.json())
-        .then(function(data) {
-            let price;
-            console.log('data is: ' + JSON.stringify(data));
-            fiat === 'EUR' ? price = data.EUR.toFixed(2) : price = data.USD.toFixed(2); //chooses price depending on which FIAT is used     
-            document.getElementById('span').innerHTML = price;                          //paints price
-            fiat === 'EUR' ? document.getElementById('symbol').textContent = '€' : document.getElementById('symbol').textContent = '$' //sets €/$ in title
-            document.getElementById('cryptoName').textContent = crypto;                           //sets crypto's name in title
+        fetch('https://min-api.cryptocompare.com/data/pric?fsym=' + crypto + '&tsyms=' + fiat + '&api_key=fd444f02fd13f67cbbbfe6bf9279aa08ca21b36fb99bf2c964790c5b645aa766')
+            .then((resp) => resp.json())
+            .catch (err => console.log('caught error;'))
+            .then(function(data) {
+                let price;   
+                styleCryptoPrice(data); 
+                try {
+                    fiat === 'EUR' ? price = data.EUR.toFixed(2) : price = data.USD.toFixed(2); //chooses price depending on which FIAT is used     
+                    document.getElementById('span').innerHTML = price;                          //paints price
+                    fiat === 'EUR' ? document.getElementById('symbol').textContent = '€' : document.getElementById('symbol').textContent = '$' //sets €/$ in title
+                    document.getElementById('cryptoName').textContent = crypto;                           //sets crypto's name in title
             
-            if (isCalculator === true) stopCalculator();
-            document.getElementById('frst-input').value = 'from ' + crypto;             //next 2 lines give text 'from CRYPTO to FIAT'
-            document.getElementById('scnd-input').value = 'to ' + fiat;
-            
-        });
+                    if (isCalculator === true) stopCalculator();
+                    document.getElementById('frst-input').value = 'from'  + crypto;             //next 2 lines give text 'from CRYPTO to FIAT'
+                    document.getElementById('scnd-input').value = 'to ' + fiat; 
+                } catch {
+                    
+                }
+            });
+}
+
+function styleCryptoPrice(data) {
+    let stringifiedPrice = JSON.stringify(data);
+    let rex = /[0-9]*\./;
+    let result = stringifiedPrice.match(rex);
+    if (result === null) return;
+    if (result[0].length === 5) {   //crypto price is 6 digits long
+        document.getElementById('span').classList.add('six-digit-spans');
+        document.getElementById('symbol').classList.add('six-digit-spans');
+        document.getElementById('h1').classList.add('six-digit-h1');
+        console.log('done');
+        return;
+    }
+
+    else if (result[0].length < 5) { //crypto price is of normal length
+        document.getElementById('span').classList.remove('six-digit-spans', 'seven-digit-spans');
+        document.getElementById('symbol').classList.remove('six-digit-spans', 'seven-digit-spans');
+        document.getElementById('h1').classList.remove('six-digit-h1', 'seven-digit-h1');
+        return;            
+    }
+    else if (result[0].length === 6) {  //crypto price is 7 digits long
+        document.getElementById('span').classList.remove('six-digit-spans');
+        document.getElementById('span').classList.add('seven-digit-spans');
+        document.getElementById('symbol').classList.remove('six-digit-spans');
+        document.getElementById('symbol').classList.add('seven-digit-spans');
+        document.getElementById('h1').classList.remove('six-digit-h1');
+        document.getElementById('h1').classList.add('seven-digit-h1');
+    }
 }
 
 
