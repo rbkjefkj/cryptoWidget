@@ -2,8 +2,8 @@ let myChart;
 
 //FUNCTIONS THAT FETCH DATA FOR GRAPHS
     let prices = [];
-    //let bogusData = [100, 100, 100, 91, 72, 53, 44, 41, 22, 17, 11, 5, 14, 23, 35, 41, 49, 58, 47, 14, 54, 33, 100, 92, 100, 100, 100];
-    let bogusData = [];
+    let bogusData = [100, 100, 100, 91, 72, 53, 44, 41, 22, 17, 11, 5, 14, 23, 35, 41, 49, 58, 47, 14, 54, 33, 100, 92, 100, 100, 100];
+    //let bogusData = [];
     let timeRN = Date.now();
     /*fetch('https://min-api.cryptocompare.com/data/v2/histoday?fsym=EOS&tsym=EUR&limit=90&aggregate=1&toTS=' + timeRN)
         .then((resp) => resp.json())
