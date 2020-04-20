@@ -171,7 +171,7 @@ getCurrentPrice2('EUR');
 
 
 function getCurrentPrice2(fiat) {
-        fetch('https://min-api.cryptocompare.com/data/pric?fsym=' + crypto + '&tsyms=' + fiat + '&api_key=fd444f02fd13f67cbbbfe6bf9279aa08ca21b36fb99bf2c964790c5b645aa766')
+        fetch('https://min-api.cryptocompare.com/data/price?fsym=' + crypto + '&tsyms=' + fiat + '&api_key=fd444f02fd13f67cbbbfe6bf9279aa08ca21b36fb99bf2c964790c5b645aa766')
             .then((resp) => resp.json())
             .catch (err => console.log('caught error;'))
             .then(function(data) {
