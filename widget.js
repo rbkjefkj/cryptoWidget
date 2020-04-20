@@ -2,7 +2,8 @@ let myChart;
 
 //FUNCTIONS THAT FETCH DATA FOR GRAPHS
     let prices = [];
-    let bogusData = [100, 100, 100, 91, 72, 53, 44, 41, 22, 17, 11, 5, 14, 23, 35, 41, 49, 58, 47, 14, 54, 33, 100, 92, 100, 100, 100];
+    //let bogusData = [100, 100, 100, 91, 72, 53, 44, 41, 22, 17, 11, 5, 14, 23, 35, 41, 49, 58, 47, 14, 54, 33, 100, 92, 100, 100, 100];
+    let bogusData = [];
     let timeRN = Date.now();
     /*fetch('https://min-api.cryptocompare.com/data/v2/histoday?fsym=EOS&tsym=EUR&limit=90&aggregate=1&toTS=' + timeRN)
         .then((resp) => resp.json())
@@ -25,7 +26,7 @@ let myChart;
                 datasets: [{
                     //label: '',
                     data: bogusData, //prices, //these are the values from API
-                    backgroundColor: 'rgba(77, 77, 255, 0.5)',//gradient, /*[ 'rgba(77, 77, 255, 0.5)' //' 0.8)' //'rgba(248, 148, 6, 0.2)'
+                    backgroundColor: 'rgba(77, 77, 255, 0.5)',//gradient, /*[ 'rgba(77, 77, 255, 0.5)' //' 0.8)' //'rgba(248, 148, 6, 0.2)'                    
                     //'rgba(255, 99, 132, 0.2)',
                     //'rgba(54, 162, 235, 0.2)',
                 //'rgba(255, 206, 86, 0.2)',
@@ -76,8 +77,8 @@ let myChart;
 
 myChart = new Chart(ctx, config2);
 
-//CHART THAT APPEARS WHEN API REQUEST FAILS
-    let failedChart;
+//CHART THAT APPEARS WHEN API REQUEST FAILS 
+    /*let failedChart;
     let failedData = [];
         var ctx = document.getElementById('myChart').getContext('2d');
             let config = {
@@ -122,7 +123,7 @@ myChart = new Chart(ctx, config2);
 }
 
 
-myChart = new Chart(ctx, config);
+myChart = new Chart(ctx, config);*/
 
 
 
@@ -186,7 +187,7 @@ function getCurrentPrice2(fiat) {
                     document.getElementById('frst-input').value = 'from'  + crypto;             //next 2 lines give text 'from CRYPTO to FIAT'
                     document.getElementById('scnd-input').value = 'to ' + fiat; 
                 } catch {
-                    
+                    document.getElementById('failedAPI').style.display = "block";    
                 }
             });
 }
