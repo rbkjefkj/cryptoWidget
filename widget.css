@@ -34,30 +34,12 @@ h1 {
 
 }
 
-/*#menu-container {
-    display: flex;
-    margin: auto;
-    padding-left: 67.5px; /*27px on Brave*//*
-    width: 39.9%;
-}
-#menu {
-    height: 40px;
-    width: 93%; /*97.65% on Brave*//*
-    background-color: lightgrey;
-    display: flex;
-}*/
-
 #menu {
     width: 585px;
     display: flex;
     height: 30px;
     margin-bottom: 6px;
 }
-
-/*#frst {
-    width: 21px; 
-    background-color: white;
-}*/
 
 .tabs {
     width: 65px;
@@ -107,10 +89,12 @@ h1 {
 
 #chart-container {
     max-width: 1477px;
-    width: 585px;
+    width: 558px;
     display: flex;
     margin: 0 auto;
 }
+
+/*canvas { margin-left: 14px; }*/
 
 #failedAPI {
     width: 90%;
@@ -160,7 +144,7 @@ form span {
 
 input {
     font-size: 16px;
-    width: 95%;
+    width: 92%;
     padding-left: 13px;
     border: none;
     border-radius: 3px;
@@ -191,10 +175,6 @@ input ::-moz-focus-inner {
    border: 0;
 }
 
-#frst-input {
-    /*margin-bottom: 5px;*/
-}
-
 #scnd-input {
     cursor: default;
 }
@@ -202,7 +182,7 @@ input ::-moz-focus-inner {
 /*CSS Rules for long crypto price tags*/
 /*six digits*/
 .six-digit-h1 {
-    margin: 30px 5px 0 auto;
+    margin: 56px 5px 0 auto;
 }
 
 h1 .six-digit-spans {
@@ -232,6 +212,7 @@ h1 .seven-digit-spans {
     h1 { margin-right: 4px; }     
     .six-digit-h1 { margin-right: 8px; } /*for when crypto price is 6 digits long*/     
     .seven-digit-h1 { margin: 30px 8px 0 auto; } /*7 digits long*/
+    #frst-input { width: 85%; }
 }
 
 
@@ -246,4 +227,3 @@ h1 .seven-digit-spans {
     span input { height: 25px; font-size: 15px; }
     span { font-size: 15px; }
 } 
-
