@@ -9,8 +9,7 @@ let fiat = 'EUR';
 let crypto = 'EOS';
 let isCalculator = false;
 	
-//CALLED ONLOAD
-getCurrentPrice2('EUR');
+getCurrentPrice2('EUR'); //gets called onload
 
 function makeDateForHumans(time) {
 	let d = new Date(time);
@@ -18,7 +17,15 @@ function makeDateForHumans(time) {
 	return `${months[d.getMonth()]} ${d.getDate()}`;
 }
 
+function removeFailedAPI() {
+    document.getElementById('myChart').style.display = 'block';
+    document.getElementById('chart-container-img').style.display = 'none';
+    document.getElementById('scnd-input').style.backgroundColor = 'lightgrey';
+                document.getElementById('span2').style.backgroundColor = 'lightgrey';
+}
+
 function getCurrentPrice2(fiat) {
+    removeFailedAPI();
 	let prices = [];
     let dates = [];
     let timeRN = getTime();
@@ -27,13 +34,10 @@ function getCurrentPrice2(fiat) {
         .then(function(data) {
            	//data.Data.Data
 			let ninetyDaysAgo = timeRN - 7776000000; //makes timestamp for the day that was 90 days ago
-			console.log(new Date(ninetyDaysAgo));
             for (let piece of data.Data.Data) {
            		prices.push(piece.close.toFixed(2));
-				console.log(makeDateForHumans(ninetyDaysAgo));
             	dates.push(makeDateForHumans(ninetyDaysAgo));
 				ninetyDaysAgo = ninetyDaysAgo + 86400000; //adds the next day
-				console.log('90 with a day added: ' + ninetyDaysAgo);
             }
             let price = prices[prices.length-1];
             styleCryptoPrice(data);
@@ -85,19 +89,25 @@ function getCurrentPrice2(fiat) {
                 				gridLines: { drawOnChartArea: false },
                 				display: false,
                 				scaleLabel: { display: false },
-                				ticks: { display: false }
+                				ticks: { display: false, min: 0 }
             				}]
         				}
     				}
 				}// end of config2
 
+                if (myChart) myChart.destroy(); //prevents chart flickering glitch
 				myChart = new Chart(ctx, config2);
 			})//canvas drawing function ends
 			.catch (function(err) { //runs if API call failed
 				document.getElementById('myChart').style.display = 'none';
-				document.getElementById('chart-container').classList.add('failedAPI');
+				document.getElementById('chart-container-img').style.display = 'block';
 				document.getElementById('frst-input').value = 'Something went wrong...';
-				document.getElementById('scnd-input').value = "But don't give up on me";
+				document.getElementById('scnd-input').value = "･*:.✧｡◉.✿:｡･:*:･ﾟ’★,｡･:*:✧･ﾟ’☆◉.｡.✧:*･゜ﾟ･✿*☆･*:.✧｡◉.✿:｡･:*:･ﾟ’★,｡:*:✧";
+                document.getElementById('scnd-input').style.backgroundColor = 'hotpink';
+                document.getElementById('span2').style.backgroundColor = 'hotpink';
+                document.getElementById('symbol').textContent = '';
+                document.getElementById('span').textContent = '¯\\_(ツ)_/¯';
+                document.getElementById('span').classList.add('six-digit-spans');
 			});
 }//the entire getCurrentPrice2() ends
 
@@ -111,7 +121,6 @@ function styleCryptoPrice(data) {
         document.getElementById('span').classList.add('six-digit-spans');
         document.getElementById('symbol').classList.add('six-digit-spans');
         document.getElementById('h1').classList.add('six-digit-h1');
-        console.log('done');
         return;
     }
 
@@ -230,3 +239,4 @@ function toBTC() {
 }
 
 //TOP SECRET: 'https://min-api.cryptocompare.com/data/price?fsym=' + crypto + '&tsyms=' + fiat + '&api_key=fd444f02fd13f67cbbbfe6bf9279aa08ca21b36fb99bf2c964790c5b645aa766'
+
