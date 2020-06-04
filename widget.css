@@ -81,12 +81,6 @@ h1 {
 #usd { background-color: #85bb65; }
 #usd:hover { background-color: #7dd24b; }
 
-
-/*#scnd {
-    width: 8px;
-    background-color: white;
-}*/
-
 #chart-container {
     max-width: 1477px;
     width: 585px;
@@ -118,10 +112,6 @@ h2 span {
     width: 585px;
     margin: auto;
 }
-
-#frst { width: 14px; background-color: white; }
-#scnd { width: 13.5px; background-color: white; }
-
 
 form {
     margin-top: 13px;
