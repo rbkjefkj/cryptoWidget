@@ -55,7 +55,7 @@ h1 {
 }
 
 #eos {
-    margin-left: 13px;
+    /*margin-left: 13px;*/
     margin-right: 2.5px;
     background-color: steelblue;
 }
@@ -70,7 +70,7 @@ h1 {
 #btc:hover { background-color: #ffb916; }
 
 #eur {
-    margin-right: 12px;
+    /*margin-right: 14px; /*12px was set before*/
     margin-left: 2px;
     background-color: #000099;
     color: #FEDD00;
@@ -89,7 +89,7 @@ h1 {
 
 #chart-container {
     max-width: 1477px;
-    width: 558px;
+    width: 585px;
     display: flex;
     margin: 0 auto;
 }
@@ -99,7 +99,7 @@ h1 {
 #failedAPI {
     width: 90%;
     display: none;
-    background-color: rgba(0, 0, 0, 0.05); 
+    background-color: rgba(0, 0, 0, 0.05);
     margin: 0 auto;
 }
 
@@ -126,11 +126,15 @@ h2 span {
 
 
 form {
-    margin-top: 7px;
+    margin-top: 13px;
     display: flex;
     flex-direction: column;
     width: 100%;
-} 
+}
+
+@media(max-width: 520px) {
+  form { width: 550px; }
+}
 
 form span {
     margin-bottom: 5px;
@@ -198,32 +202,40 @@ h1 .seven-digit-spans {
     font-size: 6rem;
 }
 
-@media(max-width: 600px) {
-    /*body .master-container, body #chart-container, body #different-master-container, body #menu { width: 95%; }*/
+@media(max-width: 630px) {
+    body {
+      width: 90%;
+      margin: 0 auto 0 auto;
+    }
+
+    .master-container {
+      margin: 0;
+      max-width: unset;
+    }
+
     #menu .tabs { width: 60px; font-size: .9rem; }
     #eos { margin-right: 1.5px; }
     #cryptoName { font-size: 5vw; }
     .spans { font-size: 27vw; }
     #h1 .six-digit-spans { font-size: 16.7vw; } /*for when crypto price is 6 digits long*/
     #h1 .seven-digit-spans { font-size: 14.6vw; } /*7 digits long*/
-    body .master-container, body #chart-container, body #different-master-container, body #menu { width: 100%; }   
-    #eos { margin-left: 13px; }
-    #eur { margin-right: 13px; }  
-    h1 { margin-right: 4px; }     
-    .six-digit-h1 { margin-right: 8px; } /*for when crypto price is 6 digits long*/     
+    body .master-container, body #chart-container, body #different-master-container, body #menu { width: 100%; }
+    /*#eos { margin-left: 8px; }*/
+    /*#eur { margin-right: 13px; }*/
+    /*h1 { margin-right: 4px; }*/
+    .six-digit-h1 { margin-right: 8px; } /*for when crypto price is 6 digits long*/
     .seven-digit-h1 { margin: 30px 8px 0 auto; } /*7 digits long*/
     #frst-input { width: 85%; }
 }
 
-
 @media(min-width: 220px) and (max-width: 430px) {
-    h1 { margin-right: 6px; }
+    /*h1 { margin-right: 6px; }*/
     .six-digit-h1 { margin-right: 8px; } /*for when crypto price is 6 digits long*/
     .seven-digit-h1 { margin-right: 8px; } /*7 digits long*/
-    #eur { margin-right: 12px; } 
+    /*#eur { margin-right: 12px; }*/
     #menu { margin-top: 6px; }
     #menu .tabs { padding-top: 6px; width: 45px; font-size: .7rem; }
     #menu { height: 24px; }
     span input { height: 25px; font-size: 15px; }
     span { font-size: 15px; }
-} 
+}
