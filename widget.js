@@ -19,8 +19,9 @@ function makeDateForHumans(time) {
 
 function removeFailedAPI() {
     document.getElementById('myChart').style.display = 'block';
+    document.getElementById('chart-container-img').style.display = 'none';
     document.getElementById('scnd-input').style.backgroundColor = 'lightgrey';
-    document.getElementById('span2').style.backgroundColor = 'lightgrey';
+                document.getElementById('span2').style.backgroundColor = 'lightgrey';
 }
 
 function getCurrentPrice2(fiat) {
@@ -99,13 +100,14 @@ function getCurrentPrice2(fiat) {
 			})//canvas drawing function ends
 			.catch (function(err) { //runs if API call failed
 				document.getElementById('myChart').style.display = 'none';
+				document.getElementById('chart-container-img').style.display = 'block';
 				document.getElementById('frst-input').value = 'Something went wrong...';
 				document.getElementById('scnd-input').value = "･*:.✧｡◉.✿:｡･:*:･ﾟ’★,｡･:*:✧･ﾟ’☆◉.｡.✧:*･゜ﾟ･✿*☆･*:.✧｡◉.✿:｡･:*:･ﾟ’★,｡:*:✧";
-                		document.getElementById('scnd-input').style.backgroundColor = 'hotpink';
-                		document.getElementById('span2').style.backgroundColor = 'hotpink';
-                		document.getElementById('symbol').textContent = '';
-                		document.getElementById('span').textContent = '¯\\_(ツ)_/¯';
-                		document.getElementById('span').classList.add('six-digit-spans');
+                document.getElementById('scnd-input').style.backgroundColor = 'hotpink';
+                document.getElementById('span2').style.backgroundColor = 'hotpink';
+                document.getElementById('symbol').textContent = '';
+                document.getElementById('span').textContent = '¯\\_(ツ)_/¯';
+                document.getElementById('span').classList.add('six-digit-spans');
 			});
 }//the entire getCurrentPrice2() ends
 
@@ -237,4 +239,3 @@ function toBTC() {
 }
 
 //TOP SECRET: 'https://min-api.cryptocompare.com/data/price?fsym=' + crypto + '&tsyms=' + fiat + '&api_key=fd444f02fd13f67cbbbfe6bf9279aa08ca21b36fb99bf2c964790c5b645aa766'
-
