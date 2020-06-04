@@ -19,9 +19,9 @@ function makeDateForHumans(time) {
 
 function removeFailedAPI() {
     document.getElementById('myChart').style.display = 'block';
-    document.getElementById('chart-container-img').style.display = 'none';
+    if (document.getElementById('chart-container-img'))	document.getElementById('chart-container-img').style.display = 'none';
     document.getElementById('scnd-input').style.backgroundColor = 'lightgrey';
-                document.getElementById('span2').style.backgroundColor = 'lightgrey';
+    document.getElementById('span2').style.backgroundColor = 'lightgrey';
 }
 
 function getCurrentPrice2(fiat) {
