@@ -25,7 +25,6 @@ function getCurrentPrice2(fiat) {
         let timeRN = getTime();
         fetch('https://min-api.cryptocompare.com/data/v2/histoday?fsym=' + crypto + '&tsym=' + fiat + '&limit=90&aggregate=1&toTS=' + timeRN)
             .then((res) => res.json())
-            //.catch (err => console.log('caught error;'))
             .then(function(data) {
             	console.log(data);
             	data.Data.Data
@@ -102,8 +101,14 @@ function getCurrentPrice2(fiat) {
 
 
 				myChart = new Chart(ctx, config2);
-			});//canvas drawing function
-}//the entire func
+			})//canvas drawing function ends
+			.catch (function(err) { //runs if API call failed
+				document.getElementById('myChart').style.display = 'none';
+				document.getElementById('chart-container').classList.add('failedAPI');
+				document.getElementById('frst-input').value = 'Something went wrong...';
+				document.getElementById('scnd-input').value = "But don't give up on me";
+			});
+}//the entire getCurrentPrice2() ends
 
 
 function styleCryptoPrice(data) {

@@ -96,11 +96,9 @@ h1 {
 
 /*canvas { margin-left: 14px; }*/
 
-#failedAPI {
-    width: 90%;
-    display: none;
-    background-color: rgba(0, 0, 0, 0.05);
-    margin: 0 auto;
+.failedAPI {
+	height: 293px;
+    background-color: rgba(0, 0, 0, 0.02);
 }
 
 h2 {
