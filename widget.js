@@ -29,13 +29,13 @@ function getCurrentPrice2(fiat) {
             .then(function(data) {
             	console.log(data);
             	data.Data.Data
-				let ninetyDaysAgo = timeRN - 7776000; //makes timestamp for the day that was 90 days ago
+				let ninetyDaysAgo = timeRN - 7776000000; //makes timestamp for the day that was 90 days ago
 				console.log(new Date(ninetyDaysAgo));
             	for (let piece of data.Data.Data) {
             	     prices.push(piece.close.toFixed(2));
 					 console.log(makeDateForHumans(ninetyDaysAgo));
             		 dates.push(makeDateForHumans(ninetyDaysAgo));
-					 ninetyDaysAgo = ninetyDaysAgo + 86400; //adds the next day
+					 ninetyDaysAgo = ninetyDaysAgo + 86400000; //adds the next day
 					 console.log('90 with a day added: ' + ninetyDaysAgo);
             	}
               let price = prices[prices.length-1];
