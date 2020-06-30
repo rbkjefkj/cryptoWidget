@@ -1,10 +1,12 @@
 body {
-	margin: 0;
-	min-height: 100vh;
+	height: 100vh;
+	display: flex;
 }
 
 main {
-
+	width: 100%;
+    height: fit-content;
+    margin: auto 0 16vh 0;
 }
 
 .master-container {
@@ -19,7 +21,7 @@ main {
 h1 {
     text-align: center;
     font-size: 2rem;
-    margin: 45px 0 0 auto;
+    margin: 0 0 0 auto;
     font-family: 'Lato', sans-serif;
     font-weight: 100;
     cursor: default;
@@ -32,15 +34,10 @@ h1 {
     font-family: 'Lato', sans-serif;
     font-weight: 100;
     cursor: default;
-    /*text-shadow: -1px 0 magenta, 0 1px magenta, 1px 0 red, 0 -1px magenta;*/
 }
 
 .six-digits {
     margin: 30px 5px 0 auto;
-}
-
-.seven-digits {
-
 }
 
 #menu {
@@ -64,37 +61,31 @@ h1 {
 }
 
 #eos {
-    /*margin-left: 13px;*/
     margin-right: 2.5px;
     background-color: steelblue;
 }
-
 #eos:hover { background-color: #1f86db; }
+
 
 #btc {
     margin-right: auto;
     background-color: orange;
 }
-
 #btc:hover { background-color: #ffb916; }
 
-#eur {
-    /*margin-right: 14px; /*12px was set before*/
-    margin-left: 2px;
-    background-color: #000099;
-    color: #FEDD00;
-}
-
-#eur:hover { background-color: #0000cc; color: yellow; }
 
 #usd { background-color: #85bb65; }
 #usd:hover { background-color: #7dd24b; }
 
 
-/*#scnd {
-    width: 8px;
-    background-color: white;
-}*/
+#eur {
+    margin-left: 2px;
+    background-color: #000099;
+    color: #FEDD00;
+}
+#eur:hover { background-color: #0000cc; color: yellow; }
+
+
 
 #chart-container {
     max-width: 1477px;
@@ -103,22 +94,17 @@ h1 {
     margin: 0 auto;
 }
 
-/*canvas { margin-left: 14px; }*/
+#chart-container-img {
+    max-width: 100%;
+    max-height: 100%;
+    opacity: 0;
+    display: none;
+}
 
-.failedAPI {
-	height: 293px;
+#failedAPI {
+	height: fit-content;
+    width: fit-content;
     background-color: rgba(0, 0, 0, 0.02);
-}
-
-h2 {
-    text-align: center;
-    font-size: 2rem;
-}
-
-h2 span {
-    background-color: pink;
-    opacity: .5;
-    cursor: text !important;
 }
 
 #different-master-container {
@@ -127,10 +113,6 @@ h2 span {
     width: 585px;
     margin: auto;
 }
-
-#frst { width: 14px; background-color: white; }
-#scnd { width: 13.5px; background-color: white; }
-
 
 form {
     margin-top: 13px;
@@ -193,27 +175,30 @@ input ::-moz-focus-inner {
 /*CSS Rules for long crypto price tags*/
 /*six digits*/
 .six-digit-h1 {
-    margin: 101px 5px 0 auto;
+    /*margin: 56px 5px 0 auto;*/
 }
 
 h1 .six-digit-spans {
-    font-size: 6.6rem;
+    font-size: 6.5rem;
 }
 
 /*seven digits*/
 .seven-digit-h1 {
-    margin: 50px 4px 0 auto;
+    /*margin: 50px 4px 0 auto;*/
 }
 
 h1 .seven-digit-spans {
     font-size: 6rem;
 }
 
+@media(min-width: 1600px) {
+	main { margin-bottom: 35vh; }
+}
+
 @media(max-width: 630px) {
     body {
       width: 90%;
       margin: 0 auto 0 auto;
-	  min-height: 100vh;
     }
 
     .master-container {
@@ -228,22 +213,20 @@ h1 .seven-digit-spans {
     #h1 .six-digit-spans { font-size: 16.7vw; } /*for when crypto price is 6 digits long*/
     #h1 .seven-digit-spans { font-size: 14.6vw; } /*7 digits long*/
     body .master-container, body #chart-container, body #different-master-container, body #menu { width: 100%; }
-    /*#eos { margin-left: 8px; }*/
-    /*#eur { margin-right: 13px; }*/
-    .six-digit-h1 { margin-right: 8px; margin-top: 20%; } /*for when crypto price is 6 digits long*/
-	h1 { margin-top: 6.3%; }
-    .seven-digit-h1 { margin: 30px 8px 0 auto; } /*7 digits long*/
+    /*.six-digit-h1 { margin-right: 8px; margin-top: 20%; } /*for when crypto price is 6 digits long*/
+	/*h1 { margin-top: 6.3%; }*/
+    /*.seven-digit-h1 { margin: 30px 8px 0 auto; } /*7 digits long*/
     #frst-input { width: 85%; }
+	main { margin: auto 0 23vh 0; }
 }
 
 @media(min-width: 220px) and (max-width: 430px) {
-    /*h1 { margin-right: 6px; }*/
     .six-digit-h1 { margin-right: 8px; } /*for when crypto price is 6 digits long*/
     .seven-digit-h1 { margin-right: 8px; } /*7 digits long*/
-    /*#eur { margin-right: 12px; }*/
     #menu { margin-top: 6px; }
     #menu .tabs { padding-top: 6px; width: 45px; font-size: .7rem; }
     #menu { height: 24px; }
     span input { height: 25px; font-size: 15px; }
     span { font-size: 15px; }
+	main { margin: auto 0 calc(33vh - 25px) 0; }
 }
