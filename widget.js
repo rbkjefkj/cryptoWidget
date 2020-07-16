@@ -11,6 +11,13 @@ let isCalculator = false;
 
 getCurrentPrice2('EUR'); //gets called onload
 
+function fixCalculatorBug() {
+	let spann = document.getElementById('span1');
+	console.log(spann.childNodes);
+	spann.removeChild(spann.childNodes[0]);
+}
+fixCalculatorBug();
+
 function makeDateForHumans(time) {
 	let d = new Date(time);
 	let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -21,7 +28,7 @@ function removeFailedAPI() {
     document.getElementById('myChart').style.display = 'block';
     document.getElementById('chart-container-img').style.display = 'none';
     document.getElementById('scnd-input').style.backgroundColor = 'lightgrey';
-                document.getElementById('span2').style.backgroundColor = 'lightgrey';
+    document.getElementById('span2').style.backgroundColor = 'lightgrey';
 }
 
 function getCurrentPrice2(fiat) {
@@ -169,6 +176,8 @@ function toCalculator() {
     //Making it pretty
     let spans = document.getElementsByClassName('form-spans');
     let inputs = document.getElementsByClassName('inputs');
+	let span1 =  document.getElementById('span1');      //just for
+    let span2 =  document.getElementById('span2');      //convenience
 
     for (let i = 0; i < inputs.length; i++) {
         inputs[i].value = "";
@@ -185,11 +194,9 @@ function toCalculator() {
     let cryptoNode = document.createTextNode(crypto);
     let fiatNode;   //defining here cos can't inside a ternary statement
     fiat === 'EUR' ? fiatNode = document.createTextNode('€') : fiatNode = document.createTextNode('$');
-    document.getElementById('frst-input').value = '';   //deleting 'from CRYPTO to FIAT'
-    document.getElementById('scnd-input').value = '';
-    let span1 =  document.getElementById('span1');      //just for
-    let span2 =  document.getElementById('span2');      //convenience
     //Checks if there isn't already a text node so that multiple text nodes wouldn't get added w every click
+	console.log(document.getElementById('span1').childNodes);
+	let node = document.createTextNode('');
     if (span1.childNodes[0].nodeType !== 3) {
         span1.insertBefore(cryptoNode, span1.childNodes[0]);
         span2.insertBefore(fiatNode, span2.childNodes[0]);
