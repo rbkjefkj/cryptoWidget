@@ -8,6 +8,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
     <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
     <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+	<script>
+	function allowOnlyNumbers(evt){
+		let value = document.getElementById('frst-input').value;
+		let isDot = /\./.test(value);
+		if (!isDot && evt.which) {
+			let ascii = evt.which;
+			if (ascii > 47 && ascii < 58 || ascii == 46) {
+				return true;
+			}
+		} else if (isDot && evt.which) {
+			let ascii = evt.which;
+			if(ascii > 47 && ascii < 58) {
+				return true;
+			}
+		}	return false;
+	}
+	</script>
     <style>
     canvas{
         -moz-user-select: none;
@@ -27,7 +44,7 @@
             <span class="spans" id="span">2.38</span>
         </h1>
         <div id="menu">
-            <div class="tabs" id="eos" ="toEOS()">EOS</div>
+            <div class="tabs" id="eos" onclick="toEOS()">EOS</div>
             <div class="tabs" id="btc" onclick="toBTC()">BTC</div>
             <div class="tabs" id="usd" onclick="toUSD()">$</div>
             <div class="tabs" id="eur" onclick="toEUR()">€</div>
@@ -43,7 +60,7 @@
     <div id="different-master-container">
         <form>
             <span class="form-spans" id="span1">
-                <input class="inputs" id="frst-input" type="text" spellcheck="false" step="any" onclick="toCalculator()" max="999999999999999999999">
+                <input class="inputs" id="frst-input" type="text" spellcheck="false" step="any" onclick="toCalculator()" onkeypress="return allowOnlyNumbers(event)" max="999999999999999999999">
             </span> <!--changeInput() previously-->
             <span class="form-spans" id="span2">
                 <input class="inputs" id="scnd-input" readonly type="text" spellcheck="false">
