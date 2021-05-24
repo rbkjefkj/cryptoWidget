@@ -25,8 +25,8 @@ function makeDateForHumans(time) {
 }
 
 function removeFailedAPI() {
-    document.getElementById('myChart').style.display = 'block';
-    document.getElementById('chart-container-img').style.display = 'none';
+    //document.getElementById('myChart').style.display = 'block';
+    //document.getElementById('chart-container-img').style.display = 'none'; //disabling this fixes failedAPI call img collapse when pressing any button. idk why I wrote this line, it breaks everything
     document.getElementById('scnd-input').style.backgroundColor = 'lightgrey';
     document.getElementById('span2').style.backgroundColor = 'lightgrey';
 }
@@ -47,7 +47,7 @@ function getCurrentPrice2(fiat) {
 				ninetyDaysAgo = ninetyDaysAgo + 86400000; //adds the next day
             }
             let price = prices[prices.length-1];
-            styleCryptoPrice(data);
+            styleCryptoPrice(data); //styles price number depending on how long it is
             try {
             	//fiat === 'EUR' ? price = data.EUR.toFixed(2) : price = data.USD.toFixed(2); //chooses price depending on which FIAT is used
                 document.getElementById('span').textContent = price;                          //paints price
@@ -181,7 +181,7 @@ function toCalculator() {
 
     for (let i = 0; i < inputs.length; i++) {
         inputs[i].value = "";
-        inputs[i].type = "number"
+        //inputs[i].type = "number"
         inputs[i].style.paddingLeft = "8px";
     }
 
@@ -206,7 +206,8 @@ function toCalculator() {
 
 function update(userInput) {
 	let inFIAT = (((document.getElementById('span').innerHTML * 100) * (userInput * 100))/10000).toFixed(2); // inFIAT = current price * user input
-    document.getElementById("scnd-input").value = inFIAT;  //assigns that to output
+    if (!isNaN(inFIAT)) { document.getElementById("scnd-input").value = inFIAT; } //assigns that to output
+	else { document.getElementById("scnd-input").value = ''; }
 }
 
 let firstInput = document.getElementById("frst-input");
@@ -218,7 +219,9 @@ firstInput.oninput =  function() {
     } else firstInput.value = firstInput.value.slice(0, 18);
 
     let userInput = parseFloat(document.getElementById("frst-input").value);
-    update(userInput);
+	//if (!isNaN(userInput)) { update(userInput); }
+	//else { update(0) };
+	update(userInput);
 };
 
 function toUSD() {
