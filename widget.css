@@ -101,6 +101,8 @@ h1 {
     display: none;
 }
 
+#myChart { min-height: 292px; } /*wo this, chart collapses uglily for a second upon first page load*/
+
 #failedAPI {
 	height: fit-content;
     width: fit-content;
